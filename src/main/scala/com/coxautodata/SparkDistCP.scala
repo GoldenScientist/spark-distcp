@@ -125,13 +125,20 @@ object SparkDistCP extends Logging {
     options.log match {
       case None => allResults.foreach(_ => ())
       case Some(f) =>
+
+        val writer = if (options.compression) {
+          f.toString + ".gz"
+        } else
+          {
+            f.toString
+          }
         allResults
           .repartition(1)
           .map(_.getMessage)
           .toDS()
           .write
           .mode(SaveMode.Append)
-          .csv(f.toString)
+          .csv(writer)
     }
 
     logInfo("SparkDistCP Run Statistics\n" + accumulators.getOutputText)

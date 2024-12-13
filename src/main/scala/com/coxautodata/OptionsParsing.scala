@@ -63,6 +63,9 @@ object OptionsParsing {
       opt[Long]("maxBytesPerTask")
         .action((i, c) => c.copyOptions(_.copy(maxBytesPerTask = i)))
         .text("Maximum number of bytes to copy in a single Spark task")
+      opt[Unit]("compression")
+        .action((_,c) => c.copyOptions(_.copy(compression = true)))
+          .text("Enable compression for copy operations")
 
       help("help").text("prints this usage text")
 

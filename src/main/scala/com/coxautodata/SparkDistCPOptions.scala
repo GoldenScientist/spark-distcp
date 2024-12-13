@@ -24,7 +24,8 @@ case class SparkDistCPOptions(
   filters: Option[URI] = SparkDistCPOptions.Defaults.filters,
   filterNot: List[Regex] = SparkDistCPOptions.Defaults.filterNot,
   numListstatusThreads: Int = SparkDistCPOptions.Defaults.numListstatusThreads,
-  verbose: Boolean = SparkDistCPOptions.Defaults.verbose
+  verbose: Boolean = SparkDistCPOptions.Defaults.verbose,
+  compression: Boolean = SparkDistCPOptions.Defaults.compression
 ) {
 
   val updateOverwritePathBehaviour: Boolean =
@@ -93,6 +94,7 @@ object SparkDistCPOptions {
     val filterNot: List[Regex] = List.empty
     val numListstatusThreads: Int = 10
     val verbose: Boolean = false
+    val compression: Boolean = false
   }
 
 }
